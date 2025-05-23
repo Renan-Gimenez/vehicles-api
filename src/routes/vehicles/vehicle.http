@@ -1,0 +1,32 @@
+GET http://localhost:3333/vehicles
+
+###
+
+GET http://localhost:3333/vehicles/0719a8b6-2a24-44ae-8430-8325116639ae
+
+###
+
+POST http://localhost:3333/vehicles
+Content-Type: application/json
+
+{
+  "placa": "ABC1235",
+  "chassi": "9BWZZZ377VT004252",
+  "renavam": 12345678912,
+  "modelo": "Gol",
+  "marca": "Volkswagen",
+  "ano": 2020
+}
+
+###
+
+PUT http://localhost:3333/vehicles/b51a4f26-5bd3-45eb-90e2-5d444de51ab8
+Content-Type: application/json
+
+{
+  "chassi": "9BWZZZ377VT004251"
+}
+
+###
+
+DELETE http://localhost:3333/vehicles/00000000-0000-0000-0000-000000000000
