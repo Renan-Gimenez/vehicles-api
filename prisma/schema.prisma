@@ -13,8 +13,8 @@ model Vehicle {
   placa     String   @unique
   chassi    String   @unique
   renavam   String   @unique
-  modelo    String
   marca     String
+  modelo    String
   ano       Int
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
