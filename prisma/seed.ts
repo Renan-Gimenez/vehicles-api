@@ -74,8 +74,6 @@ const main = async () => {
         ano: 2015,
       },
     }),
-
-    // Novos registros
     prisma.vehicle.upsert({
       where: { placa: "GHP-2419" },
       update: {},

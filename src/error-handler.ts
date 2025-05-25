@@ -42,7 +42,6 @@ export const errorHandler: FastifyErrorHandler = (error, req, res) => {
     return;
   }
 
-  // Prisma known errors
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
     let statusCode;
     let errorCode;

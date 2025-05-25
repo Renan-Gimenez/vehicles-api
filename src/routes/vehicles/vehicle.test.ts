@@ -8,7 +8,6 @@ import {
 } from "../../services/vehicle.services";
 import { CustomError } from "../../erros/custom-error";
 
-// Mock do cliente Prisma
 jest.mock("../../services/prisma", () => ({
   prisma: {
     vehicle: {
@@ -21,20 +20,17 @@ jest.mock("../../services/prisma", () => ({
   },
 }));
 
-// Converter o mock do Prisma para o tipo correto
 const mockPrismaVehicle = prisma.vehicle as jest.MockedObject<
   typeof prisma.vehicle
 >;
 
 describe("Vehicle Services - Unit Tests", () => {
-  // Limpar os mocks antes de cada teste
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   describe("getVehicles", () => {
     it("should return a list of vehicles", async () => {
-      // Definir o valor de retorno para o mock do findMany
       const mockVehicles = [
         {
           id: "1",
@@ -173,7 +169,6 @@ describe("Vehicle Services - Unit Tests", () => {
         updatedAt: new Date(),
       };
 
-      // Mockamos findUnique primeiro para simular a verificação de existência (embora a lógica de verificação esteja na rota, é bom testar o update diretamente também)
       mockPrismaVehicle.findUnique.mockResolvedValue(existingVehicle);
       mockPrismaVehicle.update.mockResolvedValue(updatedVehicle);
 
@@ -190,14 +185,10 @@ describe("Vehicle Services - Unit Tests", () => {
         },
       });
     });
-
-    // Note: The "vehicle not found" case for update is handled in the route handler.
-    // Unit tests for the service focus on the service's direct responsibility.
   });
 
   describe("deleteVehicleById", () => {
     it("should delete a vehicle", async () => {
-      // Mockamos findUnique primeiro para simular a verificação de existência (embora a lógica de verificação esteja na rota)
       const existingVehicle = {
         id: "1",
         placa: "ABC1234",
@@ -210,7 +201,7 @@ describe("Vehicle Services - Unit Tests", () => {
         updatedAt: new Date(),
       };
       mockPrismaVehicle.findUnique.mockResolvedValue(existingVehicle);
-      mockPrismaVehicle.delete.mockResolvedValue(existingVehicle); // Return the deleted object
+      mockPrismaVehicle.delete.mockResolvedValue(existingVehicle);
 
       await deleteVehicleById("1");
 
@@ -221,8 +212,5 @@ describe("Vehicle Services - Unit Tests", () => {
         },
       });
     });
-
-    // Note: The "vehicle not found" case for delete is handled in the route handler.
-    // Unit tests for the service focus on the service's direct responsibility.
   });
 });
