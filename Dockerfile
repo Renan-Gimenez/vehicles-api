@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-RUN npx prisma generate && npx prisma migrate && npx prisma db seed
+RUN npx prisma generate
 
 EXPOSE 3333
 
