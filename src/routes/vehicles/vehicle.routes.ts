@@ -18,6 +18,9 @@ export const VehicleRoutes: FastifyPluginAsyncZod = async (app) => {
     {
       schema: {
         tags: ["vehicles"],
+        response: {
+          200: z.array(vehicleSchema),
+        },
       },
     },
     async (req, res) => {
@@ -35,6 +38,9 @@ export const VehicleRoutes: FastifyPluginAsyncZod = async (app) => {
         params: z.object({
           id: z.string().uuid(),
         }),
+        response: {
+          200: vehicleSchema,
+        },
       },
     },
     async (req, res) => {
@@ -56,6 +62,9 @@ export const VehicleRoutes: FastifyPluginAsyncZod = async (app) => {
       schema: {
         tags: ["vehicles"],
         body: vehicleSchema,
+        response: {
+          201: vehicleSchema,
+        },
       },
     },
     async (req, res) => {
@@ -83,6 +92,9 @@ export const VehicleRoutes: FastifyPluginAsyncZod = async (app) => {
           id: z.string().uuid(),
         }),
         body: vehicleSchema.partial(),
+        response: {
+          201: vehicleSchema,
+        },
       },
     },
     async (req, res) => {
@@ -109,7 +121,7 @@ export const VehicleRoutes: FastifyPluginAsyncZod = async (app) => {
           id: z.string().uuid(),
         }),
         response: {
-          204: {},
+          204: z.null(),
         },
       },
     },
