@@ -27,7 +27,7 @@ export const getVehicleById = async (id: string) => {
   return data;
 };
 
-export const createVehicle = async (vehicle: Vehicle) => {
+export const createVehicle = async (vehicle: Omit<Vehicle, "id">) => {
   const data = await prisma.vehicle.create({
     data: {
       ...vehicle,
