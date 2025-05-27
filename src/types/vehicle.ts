@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const vehicleSchema = z.object({
+  id: z.string().uuid(),
   placa: z.string(),
   chassi: z.string(),
   renavam: z.string(),
