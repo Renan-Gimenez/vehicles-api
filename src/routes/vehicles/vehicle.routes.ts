@@ -61,7 +61,7 @@ export const VehicleRoutes: FastifyPluginAsyncZod = async (app) => {
     {
       schema: {
         tags: ["vehicles"],
-        body: vehicleSchema,
+        body: vehicleSchema.omit({ id: true }),
         response: {
           201: vehicleSchema,
         },
